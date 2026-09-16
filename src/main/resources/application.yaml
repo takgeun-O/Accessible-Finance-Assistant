@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: accessible-finance-backend
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate  # JPA가 테이블을 만들지 않고 SQL과 엔티티 일치 여부만 검사
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration # SQL 마이그레이션 파일 위치
+    validate-migration-naming: true # 잘못된 파일 감지
+    clean-disabled: true # 실수로 전체 DB를 삭제하는 Flyway clean 차단
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
